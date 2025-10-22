@@ -2,6 +2,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"os"
 
@@ -15,6 +17,13 @@ import (
 	"github.com/nettracex/nettracex-tui/internal/tools/traceroute"
 	"github.com/nettracex/nettracex-tui/internal/tools/whois"
 	"github.com/nettracex/nettracex-tui/internal/tui"
+)
+
+// Build-time variables set by ldflags
+var (
+	version   = "dev"
+	gitCommit = "unknown"
+	buildTime = "unknown"
 )
 
 // SimplePluginRegistry implements a basic plugin registry
@@ -102,6 +111,36 @@ func (l *SimpleLogger) Fatal(msg string, fields ...interface{}) {
 }
 
 func main() {
+	// Parse command line flags
+	var (
+		showVersion = flag.Bool("version", false, "Show version information")
+		showHelp    = flag.Bool("help", false, "Show help information")
+	)
+	flag.Parse()
+
+	// Handle version flag
+	if *showVersion {
+		fmt.Printf("NetTraceX %s\n", version)
+		return
+	}
+
+	// Handle help flag
+	if *showHelp {
+		fmt.Println("NetTraceX - A comprehensive network diagnostic toolkit with beautiful TUI")
+		fmt.Println()
+		fmt.Println("Usage:")
+		fmt.Println("  nettracex [flags]")
+		fmt.Println()
+		fmt.Println("Flags:")
+		fmt.Println("  -version    Show version information")
+		fmt.Println("  -help       Show this help message")
+		fmt.Println()
+		fmt.Println("Interactive Mode:")
+		fmt.Println("  Run without flags to start the interactive TUI")
+		fmt.Println("  Available tools: WHOIS, Ping, DNS, Traceroute, SSL")
+		return
+	}
+
 	// Initialize configuration manager
 	configManager := config.NewManager()
 	if err := configManager.Load(); err != nil {

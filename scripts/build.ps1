@@ -185,11 +185,11 @@ function Build-All {
     
     # Define build targets
     $targets = @(
-        @{ OS = "linux"; Arch = "amd64"; OutputName = "nettracex-linux-amd64"; Extension = "" },
-        @{ OS = "linux"; Arch = "arm64"; OutputName = "nettracex-linux-arm64"; Extension = "" },
-        @{ OS = "windows"; Arch = "amd64"; OutputName = "nettracex-windows-amd64"; Extension = ".exe" },
-        @{ OS = "darwin"; Arch = "amd64"; OutputName = "nettracex-darwin-amd64"; Extension = "" },
-        @{ OS = "darwin"; Arch = "arm64"; OutputName = "nettracex-darwin-arm64"; Extension = "" }
+        @{ OS = "linux"; Arch = "amd64"; OutputName = "nettracex-v$Version-linux-amd64"; Extension = "" },
+        @{ OS = "linux"; Arch = "arm64"; OutputName = "nettracex-v$Version-linux-arm64"; Extension = "" },
+        @{ OS = "windows"; Arch = "amd64"; OutputName = "nettracex-v$Version-windows-amd64"; Extension = ".exe" },
+        @{ OS = "darwin"; Arch = "amd64"; OutputName = "nettracex-v$Version-darwin-amd64"; Extension = "" },
+        @{ OS = "darwin"; Arch = "arm64"; OutputName = "nettracex-v$Version-darwin-arm64"; Extension = "" }
     )
     
     $successCount = 0
