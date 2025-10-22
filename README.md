@@ -1,4 +1,5 @@
-# NetTraceX TUI
+# <img src="https://raw.githubusercontent.com/nettracex/website/refs/heads/main/static/img/favicon.svg" alt="NetTraceX Logo" width="28" style="vertical-align: middle; margin-right: 8px;"> NetTraceX 
+
 
 A comprehensive network diagnostic toolkit built with Go, featuring a beautiful terminal user interface powered by the Bubble Tea framework.
 
@@ -308,4 +309,4 @@ The foundation is now ready for implementing the remaining tasks:
 
 ## License
 
-[License information to be added]
+This project is licensed under the [MIT License](LICENSE).
