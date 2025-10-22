@@ -308,4 +308,4 @@ The foundation is now ready for implementing the remaining tasks:
 
 ## License
 
-[License information to be added]
+This project is licensed under the [MIT License](LICENSE).
