@@ -1,0 +1,153 @@
+# GoReleaser configuration for NetTraceX TUI
+version: 1
+
+# Project metadata
+project_name: nettracex
+
+# Build configuration
+builds:
+  - id: nettracex
+    main: ./main.go
+    binary: nettracex
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    # Build flags and ldflags for version info
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.gitCommit={{.FullCommit}}
+      - -X main.buildTime={{.Date}}
+    # Ignore specific OS/arch combinations if needed
+    ignore:
+      - goos: windows
+        goarch: arm64
+
+# Archive configuration
+archives:
+  - id: default
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    files:
+      - README.md
+      - LICENSE
+      - docs/**/*
+
+# Checksum configuration
+checksum:
+  name_template: 'checksums.txt'
+
+# Snapshot configuration for development builds
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+# Changelog configuration
+changelog:
+  sort: asc
+  use: github
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^ci:'
+      - '^chore:'
+      - '^style:'
+      - '^refactor:'
+      - Merge pull request
+      - Merge branch
+  groups:
+    - title: Features
+      regexp: '^.*?feat(\([[:word:]]+\))??!?:.+$'
+      order: 0
+    - title: 'Bug fixes'
+      regexp: '^.*?fix(\([[:word:]]+\))??!?:.+$'
+      order: 1
+    - title: 'Performance improvements'
+      regexp: '^.*?perf(\([[:word:]]+\))??!?:.+$'
+      order: 2
+    - title: Others
+      order: 999
+
+# Release configuration
+release:
+  github:
+    owner: nettracex
+    name: nettracex-tui
+  draft: false
+  prerelease: auto
+  mode: replace
+  header: |
+    ## NetTraceX {{ .Tag }} Release
+    
+    A comprehensive network diagnostic toolkit with beautiful TUI interface.
+    
+    ### Installation
+    
+    #### Download Binary
+    Download the appropriate binary for your platform from the assets below.
+    
+    #### Using Go
+    ```bash
+    go install github.com/nettracex/nettracex-tui@{{ .Tag }}
+    ```
+    
+    ### What's Changed
+  footer: |
+    **Full Changelog**: https://github.com/nettracex/nettracex-tui/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+# Homebrew tap (optional - requires separate tap repository)
+# brews:
+#   - name: nettracex
+#     repository:
+#       owner: nettracex
+#       name: homebrew-tap
+#     homepage: https://github.com/nettracex/nettracex-tui
+#     description: "A comprehensive network diagnostic toolkit with beautiful TUI"
+#     license: "MIT"
+#     install: |
+#       bin.install "nettracex"
+#     test: |
+#       system "#{bin}/nettracex", "--version"
+
+# Scoop manifest for Windows (optional)
+# scoops:
+#   - name: nettracex
+#     repository:
+#       owner: nettracex
+#       name: scoop-bucket
+#     homepage: https://github.com/nettracex/nettracex-tui
+#     description: "A comprehensive network diagnostic toolkit with beautiful TUI"
+#     license: MIT
+
+# Docker images (optional)
+# dockers:
+#   - image_templates:
+#       - "ghcr.io/nettracex/nettracex:{{ .Tag }}"
+#       - "ghcr.io/nettracex/nettracex:latest"
+#     dockerfile: Dockerfile
+#     build_flag_templates:
+#       - "--pull"
+#       - "--label=org.opencontainers.image.created={{.Date}}"
+#       - "--label=org.opencontainers.image.title={{.ProjectName}}"
+#       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+#       - "--label=org.opencontainers.image.version={{.Version}}"
+
+# Validation
+before:
+  hooks:
+    - go mod tidy

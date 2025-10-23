@@ -259,6 +259,23 @@ build-manager:
 	@echo "$(BLUE)[INFO]$(NC) Building using Go build manager..."
 	go run ./cmd/build-manager/
 
+# GoReleaser targets
+goreleaser-check:
+	@echo "$(BLUE)[INFO]$(NC) Checking GoReleaser configuration..."
+	goreleaser check
+
+goreleaser-build:
+	@echo "$(BLUE)[INFO]$(NC) Building with GoReleaser (snapshot)..."
+	goreleaser build --snapshot --clean
+
+goreleaser-release-dry:
+	@echo "$(BLUE)[INFO]$(NC) Testing GoReleaser release (dry run)..."
+	goreleaser release --snapshot --clean
+
+goreleaser-install:
+	@echo "$(BLUE)[INFO]$(NC) Installing GoReleaser..."
+	go install github.com/goreleaser/goreleaser@latest
+
 # Help target
 help:
 	@echo "NetTraceX Build System"
@@ -292,6 +309,12 @@ help:
 	@echo "  lint               - Lint code (requires golangci-lint)"
 	@echo "  deps               - Download dependencies"
 	@echo "  dev-setup          - Set up development environment"
+	@echo ""
+	@echo "GoReleaser:"
+	@echo "  goreleaser-install - Install GoReleaser"
+	@echo "  goreleaser-check   - Check GoReleaser configuration"
+	@echo "  goreleaser-build   - Build with GoReleaser (snapshot)"
+	@echo "  goreleaser-release-dry - Test GoReleaser release (dry run)"
 	@echo ""
 	@echo "Utilities:"
 	@echo "  validate-build     - Validate build environment"
