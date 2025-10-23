@@ -6,6 +6,8 @@ This document explains how to use GoReleaser for building and releasing NetTrace
 
 GoReleaser is a release automation tool for Go projects. It builds binaries for multiple platforms, creates archives, generates checksums, and publishes releases to GitHub.
 
+**Version**: This project uses GoReleaser v2 for enhanced features and performance.
+
 ## Setup
 
 ### Prerequisites
@@ -31,7 +33,7 @@ GoReleaser is a release automation tool for Go projects. It builds binaries for 
 #### Option 2: Manual installation
 
 ```bash
-go install github.com/goreleaser/goreleaser@latest
+go install github.com/goreleaser/goreleaser/v2@latest
 ```
 
 #### Option 3: Using Makefile

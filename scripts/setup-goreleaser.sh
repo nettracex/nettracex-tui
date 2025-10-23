@@ -15,7 +15,7 @@ echo "✅ Go is installed: $(go version)"
 
 # Install GoReleaser
 echo "📦 Installing GoReleaser..."
-go install github.com/goreleaser/goreleaser@latest
+go install github.com/goreleaser/goreleaser/v2@latest
 
 # Verify installation
 if command -v goreleaser &> /dev/null; then

@@ -22,7 +22,7 @@ try {
 # Install GoReleaser
 Write-Host "Installing GoReleaser..." -ForegroundColor Yellow
 try {
-    $output = go install github.com/goreleaser/goreleaser@latest 2>&1
+    $output = go install github.com/goreleaser/goreleaser/v2@latest 2>&1
     if ($LASTEXITCODE -eq 0) {
         Write-Host "GoReleaser installation command executed" -ForegroundColor Green
     } else {

@@ -273,8 +273,8 @@ goreleaser-release-dry:
 	goreleaser release --snapshot --clean
 
 goreleaser-install:
-	@echo "$(BLUE)[INFO]$(NC) Installing GoReleaser..."
-	go install github.com/goreleaser/goreleaser@latest
+	@echo "$(BLUE)[INFO]$(NC) Installing GoReleaser v2..."
+	go install github.com/goreleaser/goreleaser/v2@latest
 
 # Help target
 help:
