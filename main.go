@@ -17,14 +17,10 @@ import (
 	"github.com/nettracex/nettracex-tui/internal/tools/traceroute"
 	"github.com/nettracex/nettracex-tui/internal/tools/whois"
 	"github.com/nettracex/nettracex-tui/internal/tui"
+	"github.com/nettracex/nettracex-tui/internal/version"
 )
 
-// Build-time variables set by ldflags
-var (
-	version   = "dev"
-	gitCommit = "unknown"
-	buildTime = "unknown"
-)
+
 
 // SimplePluginRegistry implements a basic plugin registry
 type SimplePluginRegistry struct {
@@ -120,7 +116,8 @@ func main() {
 
 	// Handle version flag
 	if *showVersion {
-		fmt.Printf("NetTraceX %s\n", version)
+		versionInfo := version.Get()
+		fmt.Println(versionInfo.Detailed())
 		return
 	}
 

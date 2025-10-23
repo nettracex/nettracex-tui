@@ -21,9 +21,9 @@ builds:
     # Build flags and ldflags for version info
     ldflags:
       - -s -w
-      - -X main.version={{.Version}}
-      - -X main.gitCommit={{.FullCommit}}
-      - -X main.buildTime={{.Date}}
+      - -X github.com/nettracex/nettracex-tui/internal/version.version={{.Version}}
+      - -X github.com/nettracex/nettracex-tui/internal/version.gitCommit={{.FullCommit}}
+      - -X github.com/nettracex/nettracex-tui/internal/version.buildTime={{.Date}}
     # Ignore specific OS/arch combinations if needed
     ignore:
       - goos: windows
@@ -54,7 +54,7 @@ checksum:
 
 # Snapshot configuration for development builds
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  name_template: "{{ incpatch .Version }}"
 
 # Changelog configuration
 changelog:

@@ -11,9 +11,9 @@ COMPRESS ?= false
 
 # Build flags
 LDFLAGS := -s -w
-LDFLAGS += -X main.version=$(VERSION)
-LDFLAGS += -X main.gitCommit=$(GIT_COMMIT)
-LDFLAGS += -X main.buildTime=$(BUILD_TIME)
+LDFLAGS += -X github.com/nettracex/nettracex-tui/internal/version.version=$(VERSION)
+LDFLAGS += -X github.com/nettracex/nettracex-tui/internal/version.gitCommit=$(GIT_COMMIT)
+LDFLAGS += -X github.com/nettracex/nettracex-tui/internal/version.buildTime=$(BUILD_TIME)
 
 # Build targets
 LINUX_AMD64_TARGET := $(OUTPUT_DIR)/$(APP_NAME)-v$(VERSION)-linux-amd64

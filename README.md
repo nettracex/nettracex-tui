@@ -3,6 +3,28 @@
 
 A comprehensive network diagnostic toolkit built with Go, featuring a beautiful terminal user interface powered by the Bubble Tea framework.
 
+## Installation
+
+### Quick Install (Go users)
+
+```bash
+go install github.com/nettracex/nettracex-tui@latest
+```
+
+### Download Binary
+
+Download pre-built binaries from [Releases](https://github.com/nettracex/nettracex-tui/releases).
+
+### Build from Source
+
+```bash
+git clone https://github.com/nettracex/nettracex-tui.git
+cd nettracex-tui
+go build -o nettracex .
+```
+
+For detailed installation instructions, see [INSTALLATION.md](docs/INSTALLATION.md).
+
 ## Project Structure
 
 ```
