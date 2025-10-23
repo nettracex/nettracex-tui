@@ -83,12 +83,23 @@ try {
 Write-Host ""
 Write-Host "GoReleaser setup complete!" -ForegroundColor Green
 Write-Host ""
+Write-Host "Features:" -ForegroundColor Cyan
+Write-Host "- Multi-platform builds (Linux, Windows, macOS - AMD64/ARM64)"
+Write-Host "- Proper version detection from Git tags"
+Write-Host "- No 'next' suffix in snapshot builds"
+Write-Host "- Automatic GitHub releases on tag push"
+Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Cyan
 Write-Host "1. Create a GitHub release tag:"
 Write-Host "   git tag v1.0.0"
 Write-Host "   git push origin v1.0.0"
 Write-Host "2. The GitHub Action will automatically build and release"
 Write-Host "3. Or run locally: goreleaser release --snapshot --clean"
+Write-Host ""
+Write-Host "Installation options:" -ForegroundColor Cyan
+Write-Host "- go install github.com/nettracex/nettracex-tui@latest"
+Write-Host "- Download binaries from GitHub releases"
+Write-Host "- Build from source with proper version detection"
 Write-Host ""
 Write-Host "Useful commands:" -ForegroundColor Cyan
 Write-Host "- make goreleaser-check     # Check configuration"

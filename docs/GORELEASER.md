@@ -118,6 +118,11 @@ GoReleaser creates the following artifacts in the `dist/` directory:
 - `nettracex_Darwin_x86_64.tar.gz` - macOS AMD64
 - `nettracex_Darwin_arm64.tar.gz` - macOS ARM64
 
+### Features
+- **Proper version detection**: Binaries show correct version from Git tags
+- **No "next" suffix**: Snapshot builds use clean version numbers
+- **Runtime version detection**: Works with both GoReleaser and `go install`
+
 ### Metadata
 - `checksums.txt` - SHA256 checksums
 - Release notes and changelog
