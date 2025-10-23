@@ -147,7 +147,4 @@ release:
 #       - "--label=org.opencontainers.image.revision={{.FullCommit}}"
 #       - "--label=org.opencontainers.image.version={{.Version}}"
 
-# Validation
-before:
-  hooks:
-    - go mod download
+# Validation - removed hooks to avoid dependency issues
